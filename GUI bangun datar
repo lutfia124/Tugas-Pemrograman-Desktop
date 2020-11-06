@@ -1,0 +1,60 @@
+import sys
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+
+app = QApplication(sys.argv)
+window = QWidget()
+lb = QLabel(window)
+lnedit1 = QLineEdit()
+lnedit2 = QLineEdit()
+
+
+def hitung():
+    jdl = QLabel(window)
+    jdl.setText("Menghitung Luas Persegi Panjang")
+    jdl.setStyleSheet("font: 15pt; color: #DEB887; font: bold century")
+    jdl.setAlignment(Qt.AlignCenter) 
+
+
+
+    form = QFormLayout(window)
+    form.addRow(jdl)
+    label = QLabel()
+    label.setText("Panjang persegi panjang :")
+    form.addRow(label, lnedit1)
+
+    label2 = QLabel()
+    label2.setText("Lebar persegi panjang :")
+    form.addRow(label2, lnedit2)
+
+    button = QPushButton()
+    button.setText("PROSES")
+    button.setStyleSheet("font: 12pt; color: black; font: bold century")
+    button.clicked.connect(klikMe) 
+    form.addRow(button)
+
+    form.addRow(lb)
+
+    
+
+    window.setGeometry(100,100,500,300)
+    window.show()
+    sys.exit(app.exec_())
+
+def klikMe():
+    try:
+        panjang = int(lnedit1.text())
+    except ValueError:
+        lb.setText("Masukkan angka pada panjang persegi panjang")
+    else: 
+        try:
+            lebar = int(lnedit2.text())
+        except ValueError:
+            lb.setText("Masukkan angka pada lebar persegi panjang")
+        else:
+            hasil = panjang*lebar
+            lb.setText("Luas Persegi Panjang Adalah :" + str(hasil))
+
+if __name__ == '__main__':
+    hitung()
+
